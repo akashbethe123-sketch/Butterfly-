@@ -2,60 +2,66 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For You 💖</title>
+<title>Secret Message 💖</title>
 
 <style>
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: url('bg.jpg') no-repeat center center/cover;
-}
-
-.overlay {
-  height: 100vh;
-  backdrop-filter: blur(12px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: linear-gradient(45deg,#ff6ec4,#7873f5);
+  color: white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
 }
 
 .box {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255,255,255,0.1);
   padding: 25px;
   border-radius: 20px;
   text-align: center;
-  color: white;
-  width: 80%;
-  max-width: 400px;
+  backdrop-filter: blur(10px);
+}
+
+input {
+  padding:10px;
+  border-radius:10px;
+  border:none;
+  margin-top:10px;
 }
 
 button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
+  margin-top:10px;
+  padding:10px 20px;
+  border:none;
+  border-radius:20px;
+  cursor:pointer;
 }
 
 #msg {
-  margin-top: 15px;
-  font-size: 18px;
-  line-height: 1.6;
+  margin-top:20px;
+  font-size:18px;
+  line-height:1.6;
 }
 </style>
 </head>
 
 <body>
 
-<div class="overlay">
-  <div class="box">
-    <h2>Just for you 💖</h2>
-    <button onclick="start()">Open</button>
-    <div id="msg"></div>
-  </div>
+<div class="box">
+  <h2>🔐 Enter Secret Code</h2>
+  <input type="text" id="code" placeholder="Enter here..." />
+  <br>
+  <button onclick="checkCode()">Unlock</button>
+
+  <div id="msg"></div>
 </div>
 
 <script>
-let text = `Kal jab maine aapka shaadi wala pic dekha na... 💘🔥
+const secret = "madam"; // 🔥 Yaha code change kar sakte ho
+
+const text = `Kal jab maine aapka shaadi wala pic dekha na... 💘🔥
 
 Kasam se aisa laga jaise aapne mere dil ka hi katal kar diya ho...
 
@@ -63,17 +69,22 @@ Sachi me Madam ji mere paas words hi nahi mile 🙂
 
 Bas aisa laga jaise main kuch der ke liye ek alag hi duniya me kho gaya hun ✨😊`;
 
-let i = 0;
+function checkCode(){
+  let userInput = document.getElementById("code").value.toLowerCase();
 
-function start(){
-  type();
+  if(userInput === secret){
+    typeWriter();
+  } else {
+    document.getElementById("msg").innerHTML = "❌ Wrong code... try again!";
+  }
 }
 
-function type(){
+let i = 0;
+function typeWriter(){
   if(i < text.length){
     document.getElementById("msg").innerHTML += text.charAt(i);
     i++;
-    setTimeout(type, 40);
+    setTimeout(typeWriter, 40);
   }
 }
 </script>
