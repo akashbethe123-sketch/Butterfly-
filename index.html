@@ -1,40 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You 💖</title>
 
 <style>
 body {
-  margin:0;
-  font-family:Segoe UI;
-  background:url('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2') no-repeat center;
-  background-size:cover;
-  color:white;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: url('bg.jpg') no-repeat center center/cover;
 }
 
 .overlay {
-  backdrop-filter: blur(10px);
-  height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
+  height: 100vh;
+  backdrop-filter: blur(12px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .box {
-  background: rgba(255,255,255,0.1);
-  padding:20px;
-  border-radius:20px;
-  text-align:center;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 25px;
+  border-radius: 20px;
+  text-align: center;
+  color: white;
+  width: 80%;
+  max-width: 400px;
 }
 
 button {
-  padding:10px 20px;
-  border-radius:20px;
-  border:none;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
 }
 
 #msg {
-  margin-top:20px;
-  font-size:20px;
+  margin-top: 15px;
+  font-size: 18px;
+  line-height: 1.6;
 }
 </style>
+</head>
+
+<body>
 
 <div class="overlay">
   <div class="box">
@@ -53,17 +63,20 @@ Sachi me Madam ji mere paas words hi nahi mile 🙂
 
 Bas aisa laga jaise main kuch der ke liye ek alag hi duniya me kho gaya hun ✨😊`;
 
-let i=0;
+let i = 0;
 
 function start(){
   type();
 }
 
 function type(){
-  if(i<text.length){
+  if(i < text.length){
     document.getElementById("msg").innerHTML += text.charAt(i);
     i++;
-    setTimeout(type,40);
+    setTimeout(type, 40);
   }
 }
 </script>
+
+</body>
+</html>
