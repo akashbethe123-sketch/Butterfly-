@@ -1,1 +1,105 @@
 
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You 💖</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+  background: linear-gradient(45deg,#ff6ec4,#7873f5,#42e695);
+  background-size: 400% 400%;
+  animation: gradient 8s ease infinite;
+  color: white;
+  overflow: hidden;
+}
+
+@keyframes gradient {
+  0% {background-position:0% 50%;}
+  50% {background-position:100% 50%;}
+  100% {background-position:0% 50%;}
+}
+
+.container {
+  margin-top: 25%;
+}
+
+button {
+  padding: 12px 25px;
+  font-size: 16px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+#msg {
+  margin-top: 20px;
+  font-size: 20px;
+  line-height: 1.6;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h2>Someone sent you something 💌</h2>
+  <button onclick="startMessage()">Tap to open</button>
+  <div id="msg"></div>
+</div>
+
+<script>
+const text = `Kal jab maine aapka shaadi wala pic dekha na... 💘🔥
+
+Kasam se aisa laga jaise aapne mere dil ka hi katal kar diya ho...
+
+Sachi me Madam ji mere paas words hi nahi mile 🙂
+
+Bas aisa laga jaise main kuch der ke liye ek alag hi duniya me kho gaya hun ✨😊`;
+
+function startMessage(){
+  typeWriter();
+  confetti();
+}
+
+let i = 0;
+function typeWriter() {
+  if (i < text.length) {
+    document.getElementById("msg").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeWriter, 40);
+  }
+}
+
+// 🎉 Confetti
+function confetti(){
+  const colors = ["#ff0","#0ff","#f0f","#0f0","#f00","#00f"];
+  setInterval(function(){
+    const c = document.createElement("div");
+    c.style.position = "absolute";
+    c.style.width = "8px";
+    c.style.height = "8px";
+    c.style.background = colors[Math.floor(Math.random()*colors.length)];
+    c.style.left = Math.random()*window.innerWidth + "px";
+    c.style.top = "-10px";
+    document.body.appendChild(c);
+
+    let fall = setInterval(function(){
+      c.style.top = parseInt(c.style.top) + 5 + "px";
+      if(parseInt(c.style.top) > window.innerHeight){
+        clearInterval(fall);
+        c.remove();
+      }
+    }, 20);
+  }, 150);
+}
+</script>
+
+</body>
+</html>
